@@ -11,5 +11,9 @@
     "url": "git@git.generalassemb.ly:dc-wdi-node-express/monarch-lab.git"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.6.4"
+  }
 }
