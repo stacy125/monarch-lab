@@ -1,6 +1,5 @@
 module.exports = {
   index: (req, res) => {
-    // res.redirect("/api/monarch");
-    res.send("hi");
+    res.redirect("/api/monarch");
   }
 };
