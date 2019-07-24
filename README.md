@@ -63,7 +63,7 @@ be working in the files located in the `db/seed` directory.
 1. Use `node db/seed/00--seed-collections.js` and confirm your local database
    has the for both Monarchs and Kingdoms.
 
-At this point, the `"kingdom"` field for each monarch should be blank.
+   At this point, the `"kingdom"` field for each monarch should be blank.
 
 1. In `01--seed-related-models.js` seed your data in a way that updates the
    monarchs collection to include the `ObjectId` of the kingdom over which each
