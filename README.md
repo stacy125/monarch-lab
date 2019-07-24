@@ -90,6 +90,8 @@ At this point, the `"kingdom"` field for each monarch should be blank.
 
 1. Run the express application and use the provided endpoints to confirm!
 
+   ![Example JSON response](./images/example-json-response.png)
+
 ## Bonus
 
 Use the `.populate` method to display the `name` and `extract` from each kingdom
