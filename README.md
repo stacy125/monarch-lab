@@ -1,21 +1,29 @@
 [![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
-# Lab Template
+# Monarchs: A Seeding Exercise
 
-Use this template to structure your READMEs for labs.
+So far in this unit, you have spent some time creating models and seeding data
+into your database. Seeding data can get a little more complicated when you have
+related models, or models that reference another model.
 
-Be sure to include a recent [`LICENSE`](LICENSE) and Markdown linter
-configuration ([`.remarkrc`](.remarkrc)).
+In this exercise, you will need to consider the data types of the provided data
+v. the SchemaType your model has declared. For example here, `monarchRaw.json`
+provides the kingdom as a string, but the Monarch model requires the kingdom's
+SchemaType to be an `ObjectId`.
+
+You have been provided with robust starter code for an Express application that
+will display data about monarchs and their kingdoms, including raw JSON data and
+models. Your objective is to seed the desired data from the provided models into
+a local database using Mongoose, making sure each monarch references the kingdom
+over which they reigned.
 
 ## Prerequisites
 
-* Topics with which developers should be familiar with.
-* Prerequisites are "just-in-time", so if I have a prerequisite that mentions
-  Sass, I would **not** need to include CSS as a prerequisite.
-* [Links to previous materials](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
-  are often useful.
-* In a challenge, it is useful to link to reference material, such as talk
-  repositories.
+- Node & NPM
+- MongoDB
+- Mongoose
+- Data Modeling
+- Express
 
 ## Instructions
 
@@ -28,26 +36,74 @@ Please turn in your submission by the deadline on your cohort calendar.
 
 ## Requirements
 
-Describe behavioral requirements as you'll be using them in tests. That is,
-list requirements in language that describes how the written code will be used,
-not how it will be written, with the exception of constraints you may wish to
-place on implementation. It's a good idea to include the below paragraph
-verbatim.
+Before you begin, take some time to familiarize yourself with the starter code.
+Look through the routes and controllers to find out what data this application
+will display, and at which path. Examine the models carefully, paying close
+attention to the properties in each schema. Once you have done this,fulfill the
+requirements below.
+
+**Hint:** You will not need to make any adjustments to the `index.js` file,
+routes, controllers, models, raw data or `db/connection.js` files. You will only
+be working in the files located in the `db/seed` directory.
+
+1. In `00--seed-collections.js`, map throught the monarch raw data (from the
+   JSON) to create a new array of objects that only includes the properties
+   needed in the Monarch model in the Express application.
+
+   **Hint:** We don't want to change the model itself. The `"kingdom"` property is not
+   an ObjectId so it is ok to exclude it in this step.
+
+1. In the same file, follow a similar process to map through the kingdom raw
+   data to create a new array of objects that only includes the necessary
+   properties.
+
+1. Still in `00--seed-collections.js`, use the new arrays of monarch and kingdom
+   data to seed their respective collections in your local database.
+
+1. Use the command `node db/seed/00--seed-collections.js` and confirm your local database
+   has the collections for both Monarchs and Kingdoms.
+
+   At this point, there will not be a `"kingdom"` field for each monarch.
+
+1. In `01--seed-related-models.js` seed your data in a way that updates the
+   monarchs collection to include the `ObjectId` of the kingdom over which each
+   monarch reigned.
+
+   One way to do this is to get all of the Monarchs from the database (**Hint:**
+   using Mongoose). This is important because we can _save_ each document when
+   we update it to add the kingdom as we iterate through the array of documents
+   we get from the Mongoose query.
+
+   If we import the original raw JSON for each Monarch, we can use something the
+   the `"name"` property for each Monarch document (from you database) to _find_
+   that monarch's raw JSON data.
+
+   Since the JSON has the String name of the Kingdom, we can use a Mongoose
+   query for Kingdoms (from your database) to find that Kingdom AND it's
+   ObjectId.
+
+   We can then set that ObjectId for that monarch's `"kindom"` property, and
+   presto!
+
+1. Use the command `node db/seed/01--seed-related-models.js` to seed the related model
+   fields in your local database.
+
+1. Run the express application and use the provided endpoints to confirm!
+
+   ![Example JSON response](./images/example-json-response.png)
 
 ## Bonus
 
-Bonuses are described after the requirements, if included. They should be worked
-on **only after** passing requirements.
+Use the `.populate` method to display the `name` and `extract` from each kingdom
+in the monarchs collection.
 
-Less experienced students should be able to complete the base requirements in
-the alloted time for labs and in around 2 hours for homework; more experienced
-students should be to complete the bonus.
-
-Sometimes, we ask questions that promote thinking critically about code.
+[Mongoose Documentation on Query Population](https://mongoosejs.com/docs/3.4.x/docs/populate.html)
 
 ## Plagiarism
 
-Take a moment to refamiliarize yourself with the [Plagiarism policy](https://git.generalassemb.ly/DC-WDI/Administrative/blob/master/plagiarism.md). Plagiarized work will not be accepted.
+Take a moment to refamiliarize yourself with the
+[Plagiarism policy](https://git.generalassemb.ly/DC-WDI/Administrative/blob/master/plagiarism.md).
+Plagiarized work will not be accepted.
 
 ## [License](LICENSE)
 
