@@ -6,15 +6,9 @@ So far in this unit, you have spent some time creating models and seeding data
 into your database. Seeding data can get a little more complicated when you have
 related models, or models that reference another model.
 
-In this exercise, you will need to consider the data types of the provided data
-v. the SchemaType your model has declared. For example here, `monarchRaw.json`
-provides the kingdom as a string, but the Monarch model requires the kingdom's
-SchemaType to be an `ObjectId`.
+In this exercise, you will need to consider how to structure your Schema, and subsequently seed your database so that we can nest these two data sets.
 
-You have been provided with robust starter code for an Express application that
-will display data about monarchs and their kingdoms, including raw JSON data and
-models. Your objective is to seed the desired data from the provided models into
-a local database using Mongoose, making sure each monarch references the kingdom
+You have been provided with starter code that includes raw JSON data. Your objective is to create models and seed the desired data a local database using Mongoose, making sure each monarch contains the kingdom
 over which they reigned.
 
 ## Prerequisites
@@ -23,7 +17,7 @@ over which they reigned.
 - MongoDB
 - Mongoose
 - Data Modeling
-- Express
+- Database Seeding
 
 ## Instructions
 
@@ -36,22 +30,18 @@ Please turn in your submission by the deadline on your cohort calendar.
 
 ## Requirements
 
-Before you begin, take some time to familiarize yourself with the starter code.
-Look through the routes and controllers to find out what data this application
-will display, and at which path. Examine the models carefully, paying close
-attention to the properties in each schema. Once you have done this,fulfill the
-requirements below.
+Before you begin, take some time to familiarize yourself with the data provided.
+Once you have done this,fulfill the requirements below.
 
-**Hint:** You will not need to make any adjustments to the `index.js` file,
-routes, controllers, models, raw data or `db/connection.js` files. You will only
-be working in the files located in the `db/seed` directory.
+**Hint:** You will not need to make any adjustments to the raw data or `db/connection.js` files. You will only be working with your `models` and the files located in the `db/seed` directory.
+
+1. Create a `Monarch` model that includes the following properties and their appropriate data types: `name`, `house`, `start`, `end`, `endReason` and `kingdom`.
+
+1. Create a `Kingdom` model that includes the following properties and their appropriate data types: `title` and `extract`.
 
 1. In `00--seed-collections.js`, map throught the monarch raw data (from the
    JSON) to create a new array of objects that only includes the properties
-   needed in the Monarch model in the Express application.
-
-   **Hint:** We don't want to change the model itself. The `"kingdom"` property is not
-   an ObjectId so it is ok to exclude it in this step.
+   needed in the Monarch model.
 
 1. In the same file, follow a similar process to map through the kingdom raw
    data to create a new array of objects that only includes the necessary
@@ -66,7 +56,7 @@ be working in the files located in the `db/seed` directory.
    At this point, there will not be a `"kingdom"` field for each monarch.
 
 1. In `01--seed-related-models.js` seed your data in a way that updates the
-   monarchs collection to include the `ObjectId` of the kingdom over which each
+   monarchs collection to include the kingdom over which each
    monarch reigned.
 
    One way to do this is to get all of the Monarchs from the database (**Hint:**
@@ -79,25 +69,19 @@ be working in the files located in the `db/seed` directory.
    that monarch's raw JSON data.
 
    Since the JSON has the String name of the Kingdom, we can use a Mongoose
-   query for Kingdoms (from your database) to find that Kingdom AND it's
-   ObjectId.
-
-   We can then set that ObjectId for that monarch's `"kindom"` property, and
-   presto!
+   query for Kingdoms (from your database) to find that Kingdom add it as that monarch's `"kingdom"` property, and presto!
 
 1. Use the command `node db/seed/01--seed-related-models.js` to seed the related model
    fields in your local database.
 
-1. Run the express application and use the provided endpoints to confirm!
+1. Open your Mongo Shell and check the database to verify.
 
-   ![Example JSON response](./images/example-json-response.png)
-
-## Bonus
+<!-- ## Bonus
 
 Use the `.populate` method to display the `name` and `extract` from each kingdom
 in the monarchs collection.
 
-[Mongoose Documentation on Query Population](https://mongoosejs.com/docs/3.4.x/docs/populate.html)
+[Mongoose Documentation on Query Population](https://mongoosejs.com/docs/3.4.x/docs/populate.html) -->
 
 ## Plagiarism
 
