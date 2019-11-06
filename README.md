@@ -4,7 +4,7 @@
 
 So far in this unit, you have spent some time creating models and seeding data
 into your database. Seeding data can get a little more complicated when you have
-related models, or models that reference another model.
+nested models, or models that constain subdocuments consisting of other collections of data.
 
 In this exercise, you will need to consider how to structure your Schema, and subsequently seed your database so that we can nest these two data sets.
 
@@ -55,7 +55,7 @@ Once you have done this,fulfill the requirements below.
 
    At this point, there will not be a `"kingdom"` field for each monarch.
 
-1. In `01--seed-related-models.js` seed your data in a way that updates the
+1. In `01--seed-nested-models.js` seed your data in a way that updates the
    monarchs collection to include the kingdom over which each
    monarch reigned.
 
@@ -71,7 +71,7 @@ Once you have done this,fulfill the requirements below.
    Since the JSON has the String name of the Kingdom, we can use a Mongoose
    query for Kingdoms (from your database) to find that Kingdom add it as that monarch's `"kingdom"` property, and presto!
 
-1. Use the command `node db/seed/01--seed-related-models.js` to seed the related model
+1. Use the command `node db/seed/01--seed-nested-models.js` to seed the nested model
    fields in your local database.
 
 1. Open your Mongo Shell and check the database to verify.
