@@ -4,7 +4,7 @@
 
 So far in this unit, you have spent some time creating models and seeding data
 into your database. Seeding data can get a little more complicated when you have
-nested models, or models that constain subdocuments consisting of other collections of data.
+nested models, or models that contain subdocuments consisting of other collections of data.
 
 In this exercise, you will need to consider how to structure your Schema, and subsequently seed your database so that we can nest these two data sets.
 
