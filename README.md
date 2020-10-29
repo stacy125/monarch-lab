@@ -64,12 +64,11 @@ Once you have done this,fulfill the requirements below.
    we update it to add the kingdom as we iterate through the array of documents
    we get from the Mongoose query.
 
-   If we import the original raw JSON for each Monarch, we can use something the
-   the `"name"` property for each Monarch document (from you database) to _find_
+   If we import the original raw JSON for each Monarch, we can use the `"name"` property for each Monarch document (from you database) to _find_
    that monarch's raw JSON data.
 
    Since the JSON has the String name of the Kingdom, we can use a Mongoose
-   query for Kingdoms (from your database) to find that Kingdom add it as that monarch's `"kingdom"` property, and presto!
+   query for Kingdoms (from your database) to find that Kingdom, and then set the monarch's `"kingdom"` property to the value of the `Kingdom` document, and presto!
 
 1. Use the command `node db/seed/01--seed-nested-models.js` to seed the nested model
    fields in your local database.
