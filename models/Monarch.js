@@ -1,4 +1,4 @@
-let mongoose = require('mongoose')
+let mongoose = require('../db/connection.js')
 
 let monarchSchema = new mongoose.Schema({
 

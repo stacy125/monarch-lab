@@ -16,8 +16,8 @@ console.log(monarchJson.map(destructureMonarch))
 
 monarchModel
     .deleteMany({})
-    .then(() => monarchModel.create(destructureMonarch))
-    .then(mongoose.disconnect)
+    .then(() => monarchModel.create(destructuredMonarch))
+    // .then(mongoose.disconnect)
     .then(() => console.log("Done!"))
 
 let destructureKingdom =
@@ -30,6 +30,6 @@ console.log(kingdomJson.map(destructureKingdom))
 
 monarchModel
     .deleteMany({})
-    .then(() => kingdomModel.create(destructureKingdom))
-    .then(mongoose.disconnect)
+    .then(() => kingdomModel.create(destructuredKingdom))
+    // .then(mongoose.disconnect)
     .then(() => console.log("Done!"))
